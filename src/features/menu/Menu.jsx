@@ -1,12 +1,12 @@
-import { getMenu } from "../../services/apiRestaurant";
-import { useLoaderData } from "react-router-dom";
-import MenuItem from "./MenuItem";
+import { useLoaderData } from 'react-router-dom';
+import { getMenu } from '../../services/apiRestaurant';
+import MenuItem from './MenuItem';
 
 function Menu() {
   const menu = useLoaderData();
-  console.log(menu);
+
   return (
-    <ul>
+    <ul className="divide-y divide-stone-200 px-2">
       {menu.map((pizza) => (
         <MenuItem pizza={pizza} key={pizza.id} />
       ))}
@@ -16,6 +16,7 @@ function Menu() {
 
 export async function loader() {
   const menu = await getMenu();
+  // the loader function should return whatever data it wants to provide to the page
   return menu;
 }
 
